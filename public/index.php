@@ -59,13 +59,17 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
             {
                 if($event['message']['type'] == 'text')
                 {
+                    $packageId = 1;
+                    $stickerId = 2;
+                    $stickerMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
+                    $bot->replyMessage($event['replyToken'], $stickerMessageBuilder);
                     // send same message as reply to user
                     // $result = $bot->replyText($event['replyToken'], $event['message']['text']);
  
  
                     // or we can use replyMessage() instead to send reply message
-                    $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
-                    $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                    // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                    // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
  
  
                     $response->getBody()->write($result->getJSONDecodedBody());
