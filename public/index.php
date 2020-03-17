@@ -83,4 +83,17 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
 // kode aplikasi nanti disini
  
 });
+
+$app->get('/pushmessage', function ($req, $response) use ($bot) {
+    // send push message to user
+    $userId = 'suryoag';
+    $textMessageBuilder = new TextMessageBuilder('Halo, ini pesan push');
+    $result = $bot->pushMessage($userId, $textMessageBuilder);
+ 
+    $response->getBody()->write((string) $result->getJSONDecodedBody());
+    return $response
+        ->withHeader('Content-Type', 'application/json')
+        ->withStatus($result->getHTTPStatus());
+});
+
 $app->run();
