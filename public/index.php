@@ -64,8 +64,8 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
  
  
                     // or we can use replyMessage() instead to send reply message
-                    $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
-                    $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                    // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                    // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
  
  
                     $response->getBody()->write($result->getJSONDecodedBody());
