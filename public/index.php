@@ -88,12 +88,26 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
                             break;
 
                         case 'siapa kamu':
-                            $textMessageBuilder = new TextMessageBuilder("perkenalkan namaku logi, aku adalah sebuah bot sederhana untuk membantu belajar rangkaian digital");
+                            $textMessageBuilder = new TextMessageBuilder("perkenalkan namaku logi, aku adalah sebuah bot sederhana untuk membantu belajar rangkaian digital. Logi juga bisa kamu invite ke groupmu untuk bermain/belajar bersama teman-temanmu");
                             $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                             break;
 
+                        case 'play':
+                            $flexTemplate = file_get_contents("../flex_message.json");
+                            $result = $httpClient->post(LINEBot::DEFAULT_ENDPOINT_BASE . '/v2/bot/message/reply', [
+                                'replyToken' => $event['replyToken'],
+                                'messages'   => [
+                                    [
+                                        'type'     => 'flex',
+                                        'altText'  => 'Test Flex Message',
+                                        'contents' => json_decode($flexTemplate)
+                                    ]
+                                ],
+                            ]);
+                            break;
+
                         default:
-                            $balasanSalah = "Logi Tidak Menemukan Keyword yang Kamu Maksud.\n\nBeberapa opsi yang bisa kamu coba:\n\nHelp --- Untuk mengetahui penggunaan dan keyword.\n\nPlay --- Untuk Bermain LogiFun.\n\nAbout --- Untuk Mengetahui asal usul aplikasi LogiFun.";
+                            $balasanSalah = "Logi Tidak Menemukan Keyword yang Kamu Maksud.\n\nBeberapa opsi yang bisa kamu coba:\n\nhelp --- Untuk mengetahui penggunaan dan keyword.\n\nplay --- Untuk Bermain LogiFun.\n\nabout --- Untuk Mengetahui asal usul aplikasi LogiFun.";
                             $textMessageBuilder = new TextMessageBuilder($balasanSalah);
                             $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                             break;
