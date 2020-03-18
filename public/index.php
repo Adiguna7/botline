@@ -58,11 +58,22 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
             if ($event['type'] == 'message')
             {
                 if($event['message']['type'] == 'text')
-                {
-                    $packageId = 1;
-                    $stickerId = 2;
-                    $stickerMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
-                    $bot->replyMessage($event['replyToken'], $stickerMessageBuilder);
+                {                                      
+
+                    if($event['message']['text'] == "halo"){
+                        $packageId = 1;
+                        $stickerId = 2;
+                        $stickerMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
+                        $result = $bot->replyMessage($event['replyToken'], $stickerMessageBuilder);
+                    }
+                    elseif($event['message']['text'] == "siapa"){
+                        $textMessageBuilder = new TextMessageBuilder("perkenalkan namaku logi");
+                        $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                    }
+                    else{
+                        $textMessageBuilder = new TextMessageBuilder("hmm, logi tidak menemukan kata yang sesuai nih");
+                        $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                    }                                    
                     // send same message as reply to user
                     // $result = $bot->replyText($event['replyToken'], $event['message']['text']);
  
