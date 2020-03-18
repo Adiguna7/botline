@@ -1,0 +1,91 @@
+{
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://www.amarula-electronics.com/files/amarula-electronics.com/2017/02/775-circuit-board-1920x1080-abstract-wallpaper.jpg?v=79cba1185463",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover",
+      "action": {
+        "type": "uri",
+        "uri": "http://linecorp.com/"
+      }
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "LogiFun",
+          "weight": "bold",
+          "size": "xl",
+          "align": "center",
+          "color": "#0c443b"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Logifun merupakan bot sederhana",
+                  "size": "md",
+                  "color": "#7be4db",
+                  "align": "center"
+                },
+                {
+                  "type": "text",
+                  "text": "Untuk mempelajari rangkaian digital",
+                  "color": "#7be4db",
+                  "size": "md",
+                  "align": "center"
+                }
+              ],
+              "spacing": "sm"
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "contents": [
+        {
+          "type": "button",
+          "style": "link",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "PLAY",
+            "uri": "https://linecorp.com"
+          },
+          "color": "#0c443b"
+        },
+        {
+          "type": "button",
+          "style": "link",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "HELP",
+            "uri": "https://linecorp.com"
+          },
+          "color": "#0c443b"
+        },
+        {
+          "type": "spacer",
+          "size": "md"
+        }
+      ],
+      "flex": 0
+    }
+  }

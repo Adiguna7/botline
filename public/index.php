@@ -71,7 +71,13 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
                         $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                     }
                     else{
-                        $textMessageBuilder = new TextMessageBuilder("hmm, logi tidak menemukan kata yang sesuai nih");
+                        $balasanSalah = nl2br("Logi Tidak Menemukan Keyword yang Kamu Maksud \n
+                                        Beberapa opsi yang bisa kamu coba: \n
+                                        Help --- Untuk mengetahui penggunaan dan keyword\n
+                                        Play --- Untuk Bermain LogiFun\n
+                                        About --- Untuk Mengetahui asal usul aplikasi LogiFun \n
+                                        ");
+                        $textMessageBuilder = new TextMessageBuilder($balasanSalah);
                         $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
                     }                                    
                     // send same message as reply to user
