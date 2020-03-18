@@ -60,24 +60,45 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
                 if($event['message']['type'] == 'text')
                 {                                      
 
-                    if($event['message']['text'] == "halo"){
-                        $packageId = 1;
-                        $stickerId = 2;
-                        $stickerMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
-                        $result = $bot->replyMessage($event['replyToken'], $stickerMessageBuilder);
-                    }
-                    elseif($event['message']['text'] == "siapa"){
-                        $textMessageBuilder = new TextMessageBuilder("perkenalkan namaku logi");
-                        $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
-                    }
-                    else{
-                        $balasanSalah =
+                    // if($event['message']['text'] == "halo"){
+                    //     $packageId = 1;
+                    //     $stickerId = 2;
+                    //     $stickerMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
+                    //     $result = $bot->replyMessage($event['replyToken'], $stickerMessageBuilder);
+                    // }
+                    // elseif($event['message']['text'] == "siapa kamu"){
+                    //     $textMessageBuilder = new TextMessageBuilder("perkenalkan namaku logi");
+                    //     $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                    // }                    
+                    // else{
+                    //     $balasanSalah =
 
-                        "Logi Tidak Menemukan Keyword yang Kamu Maksud.\n\nBeberapa opsi yang bisa kamu coba:\n\nHelp --- Untuk mengetahui penggunaan dan keyword.\n\nPlay --- Untuk Bermain LogiFun.\n\nAbout --- Untuk Mengetahui asal usul aplikasi LogiFun.";
+                    //     "Logi Tidak Menemukan Keyword yang Kamu Maksud.\n\nBeberapa opsi yang bisa kamu coba:\n\nHelp --- Untuk mengetahui penggunaan dan keyword.\n\nPlay --- Untuk Bermain LogiFun.\n\nAbout --- Untuk Mengetahui asal usul aplikasi LogiFun.";
 
-                        $textMessageBuilder = new TextMessageBuilder($balasanSalah);
-                        $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
-                    }                                    
+                    //     $textMessageBuilder = new TextMessageBuilder($balasanSalah);
+                    //     $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                    // } 
+                    
+                    switch ($event['message']['text']) {
+                        case 'halo':
+                            $packageId = 1;
+                            $stickerId = 2;
+                            $stickerMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
+                            $result = $bot->replyMessage($event['replyToken'], $stickerMessageBuilder);
+                            break;
+
+                        case 'siapa kamu':
+                            $textMessageBuilder = new TextMessageBuilder("perkenalkan namaku logi, aku adalah sebuah bot sederhana untuk membantu belajar rangkaian digital");
+                            $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                            break;
+
+                        default:
+                            $balasanSalah = "Logi Tidak Menemukan Keyword yang Kamu Maksud.\n\nBeberapa opsi yang bisa kamu coba:\n\nHelp --- Untuk mengetahui penggunaan dan keyword.\n\nPlay --- Untuk Bermain LogiFun.\n\nAbout --- Untuk Mengetahui asal usul aplikasi LogiFun.";
+                            $textMessageBuilder = new TextMessageBuilder($balasanSalah);
+                            $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+                            break;
+                    }
+
                     // send same message as reply to user
                     // $result = $bot->replyText($event['replyToken'], $event['message']['text']);
  
