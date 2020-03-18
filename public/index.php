@@ -73,7 +73,7 @@ $app->post('/webhook', function (Request $request, Response $response) use ($cha
                     else{
                         $balasanSalah =
 
-                        "Logi Tidak Menemukan Keyword yang Kamu Maksud.\n\nBeberapa opsi yang bisa kamu coba:\n\nHelp --- Untuk mengetahui penggunaan dan keyword.\nPlay --- Untuk Bermain LogiFun.\nAbout --- Untuk Mengetahui asal usul aplikasi LogiFun.";
+                        "Logi Tidak Menemukan Keyword yang Kamu Maksud.\n\nBeberapa opsi yang bisa kamu coba:\n\nHelp --- Untuk mengetahui penggunaan dan keyword.\n\nPlay --- Untuk Bermain LogiFun.\n\nAbout --- Untuk Mengetahui asal usul aplikasi LogiFun.";
 
                         $textMessageBuilder = new TextMessageBuilder($balasanSalah);
                         $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
